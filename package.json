@@ -8,7 +8,7 @@
   "dependencies": {
     "aws-sdk": "2.2.x",
     "minimist": "1.1.x",
-    "sleep": "3.0.x",
+    "sleep": "5.1.1",
     "dotenv": "0.4.x"
   },
   "devDependencies": {
