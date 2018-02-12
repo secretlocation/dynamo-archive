@@ -16,7 +16,6 @@
 
 var utils = require('../lib/utils');
 var readline = require('readline');
-var sleep = require('sleep');
 
 var argv = utils.config({
     demand: ['table'],
@@ -32,7 +31,8 @@ dynamo.describeTable(
     },
     function (err, data) {
         if (err != null) {
-            throw err;
+            console.log("\n[ERROR] " + err.message + " -- " + argv.table + "\n");
+            return
         }
         if (data == null) {
             throw 'Table ' + argv.table + ' not found in DynamoDB';
@@ -41,7 +41,7 @@ dynamo.describeTable(
         var start = Date.now();
         var msecPerItem = Math.round(1000 / quota / ((argv.rate || 100) / 100));
         var done = 0;
-        readline.createInterface(process.stdin, process.stdout).on(
+        readline.createInterface(process.stdin).on(
             'line',
             function(line) {
                 dynamo.putItem(
@@ -51,16 +51,12 @@ dynamo.describeTable(
                     },
                     function (err, data) {
                         if (err) {
-                            console.log(err, err.stack);
-                            throw err;
+                          console.log(err, err.stack);
+                          throw err;
                         }
                     }
                 );
                 ++done;
-                var expected = start + msecPerItem * done;
-                if (expected > Date.now()) {
-                    sleep.usleep((expected - Date.now()) * 1000);
-                }
             }
         );
     }
