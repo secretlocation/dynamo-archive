@@ -13,8 +13,7 @@
   },
   "devDependencies": {
     "tape": "~2.13.2",
-    "faucet": "0.0.x",
-    "dynalite": "0.3.x"
+    "faucet": "0.0.x"
   },
   "bin": {
     "dynamo-archive": "bin/dynamo-archive.js",
