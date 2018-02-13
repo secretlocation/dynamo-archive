@@ -8,7 +8,7 @@
   "dependencies": {
     "aws-sdk": "2.2.x",
     "minimist": "1.1.x",
-    "sleep": "5.1.1",
+    "sleep": "https://github.com/redgetan/node-sleep.git",
     "dotenv": "0.4.x"
   },
   "devDependencies": {
